@@ -2,7 +2,6 @@ const express = require("express");
 const Post = require("../models/post");
 const router = express.Router();
 
-// 🔹 1. Yangi post qo‘shish (CREATE)
 router.post("/", async (req, res) => {
     try {
         const newPost = new Post(req.body);
@@ -13,7 +12,6 @@ router.post("/", async (req, res) => {
     }
 });
 
-// 🔹 2. Barcha postlarni olish (READ - ALL)
 router.get("/", async (req, res) => {
     try {
         const posts = await Post.find();
@@ -23,7 +21,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-// 🔹 3. Bitta postni ID orqali olish (READ - ONE)
 router.get("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
@@ -34,7 +31,6 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-// 🔹 4. Postni yangilash (UPDATE)
 router.put("/:id", async (req, res) => {
     try {
         const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true });
